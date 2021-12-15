@@ -3,7 +3,6 @@ class CLI
         greeting
         menu
         API.grab_pokemons
-        binding.pry
     end
 
     def greeting
@@ -11,6 +10,18 @@ class CLI
     end
 
     def menu
-        puts "Select a Pokemon"
+        puts "Would you like to explore the world of Pokemon?"
+        sleep(2)
+        puts "Y/N?"
+        input = gets.strip.downcase
+
+        if input == "y"
+            puts "Here we go!"
+        elsif input == "n"
+            puts "Farewell!"
+        else
+            puts "invalid choice"
+            menu
+        end
     end
 end
