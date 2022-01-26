@@ -3,6 +3,7 @@ class CLI
         greeting
         API.grab_pokemons
         self.menu
+        loop_or_exit
     end
 
     def greeting
@@ -34,6 +35,30 @@ class CLI
         
         end
     end
+
+    def loop_or_exit
+        puts"----------------------------"
+        puts "Would you like to view more? Please enter Y/N"
+        puts"----------------------------"
+        input = gets.strip.downcase
+
+        if input == "y"
+            self.display_list_of_pokemons
+            self.user_pokemon_choice
+
+        elsif input == "n"
+            puts"----------------------------"
+            puts "Farewell Pokemaster!"
+            puts"----------------------------"
+            exit
+        
+        else
+            puts"----------------------------"
+            puts "Invalid choice"
+            loop_or_exit
+        end
+    end
+
     def user_pokemon_choice
 
         puts"----------------------------"
@@ -45,6 +70,8 @@ class CLI
 
         until pokemon_choice_index.between?(0,max_limit)
             puts "Invalid choice"
+            sleep(2)
+            loop_or_exit
             pokemon_choice_index = gets.strip.to_i - 1  #If invalid user will be asked again
         end
 
@@ -73,5 +100,6 @@ class CLI
         sleep(1)
         puts "Weight: #{pokemon_object_lookup.weight}"
         sleep(1)
+        loop_or_exit
     end
 end
