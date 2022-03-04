@@ -1,5 +1,6 @@
 class CLI
     def run
+        self.pokedex_logo
         greeting
         API.grab_pokemons
         self.menu
@@ -7,13 +8,17 @@ class CLI
     end
 
     def greeting
+        puts"----------------------------"
         puts "Welcome Pokemaster!"
+        puts"----------------------------"
     end
 
     def menu
         puts "Would you like to explore the world of Pokemon?"
+        puts"----------------------------"
         sleep(2)
         puts "Y/N?"
+        puts"----------------------------"
         input = gets.strip.downcase
 
         if input == "y"
@@ -22,6 +27,7 @@ class CLI
             self.user_pokemon_choice
         elsif input == "n"
             puts "Farewell!"
+            exit
         else
             puts "invalid choice"
             menu
@@ -102,4 +108,9 @@ class CLI
         sleep(1)
         loop_or_exit
     end
+
+    def pokedex_logo
+        file = File.open("./lib/pokedex.txt")
+        puts file.read
+    end	  
 end
